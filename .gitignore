@@ -1,0 +1,7 @@
+*.o
+*.elf
+*.img
+*.map
+.vscode
+.vs
+.DS_Store
