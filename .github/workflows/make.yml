@@ -13,9 +13,10 @@ jobs:
 
     steps:
     
-    - name: Install gcc-11
+    - name: Install clang
       run: |
         sudo apt update
+        sudo apt upgrade
         sudo apt install clang
         
     - uses: actions/checkout@v3
