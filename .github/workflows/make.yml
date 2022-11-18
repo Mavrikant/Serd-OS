@@ -13,5 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install LLVM and Clang
+      uses: KyleMayes/install-llvm-action@v1.6.0
     - name: make
       run: make
