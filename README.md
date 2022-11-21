@@ -10,7 +10,7 @@ Experimental 'operating system' for Raspberry Pi 4
 
 - Ubuntu 22.04 or WSL 2
 ```
-    sudo apt install gcc-aarch64-linux-gnu
+    sudo apt install llvm lld clang
     sudo apt install qemu-system-arm
 ```
 - VS Code

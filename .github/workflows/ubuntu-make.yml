@@ -18,9 +18,6 @@ jobs:
         sudo apt update
         sudo apt upgrade
         sudo apt install llvm lld clang
-        clang
-        ld.lld
-        llvm-objcopy
 
     - uses: actions/checkout@v3
 
