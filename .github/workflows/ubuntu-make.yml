@@ -1,0 +1,28 @@
+name: make
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Install Clang
+      run: |
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install llvm lld clang
+        clang
+        ld.lld
+        llvm-objcopy
+
+    - uses: actions/checkout@v3
+
+    - name: make
+      run: make
