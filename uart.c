@@ -64,32 +64,27 @@ void uart_init()
 /**
  * Send a character
  */
-void uart_writeChar(unsigned int c)
+void uart_writeChar(unsigned int c) 
 {
-    /* wait until we can send */
-    do
+    while((*UART0_FR) & (1 << 5) ) // Until Tx is available
     {
-        asm volatile("nop");
-    } while (*UART0_FR & 0x20);
-    /* write the character to the buffer */
-    *UART0_DR = c;
+        asm volatile("nop"); // Wait
+    }
+    *UART0_DR=c; // write to buffer
 }
 
 /**
  * Receive a character
  */
-char uart_readChar()
+char uart_readChar() 
 {
-    char r;
-    /* wait until something is in the buffer */
-    do
+    char r = 0;
+    while((*UART0_FR) & (1 << 4)) // Until Rx is available
     {
-        asm volatile("nop");
-    } while (*UART0_FR & 0x10);
-    /* read it and return */
-    r = (char)(*UART0_DR);
-    /* convert carrige return to newline */
-    return r == '\r' ? '\n' : r;
+        asm volatile("nop"); // Wait
+    }
+    r=(char)(*UART0_DR); // read from register
+    return r=='\r'?'\n':r; // convert carrige return to newline
 }
 
 /**
