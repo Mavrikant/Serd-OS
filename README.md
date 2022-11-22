@@ -1,5 +1,8 @@
 Experimental 'operating system' for Raspberry Pi 3
 ===================================================================
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d217ff375cb149679d09d1605e586c64)](https://app.codacy.com/gh/Mavrikant/Serd-OS?utm_source=github.com&utm_medium=referral&utm_content=Mavrikant/Serd-OS&utm_campaign=Badge_Grade_Settings)
+
 <p align="center">
 'just a hobby, won't be big and professional like gnu'
 </p>
