@@ -12,5 +12,4 @@ void memcpy(void *dst, void *src, unsigned int size);
 void memmove(void *dst, void *src, unsigned int size);
 int memcmp(void *src1, void *src2, unsigned int size);
 
-
 #endif
