@@ -1,5 +1,5 @@
-#include "uart.h"
 #include "print.h"
+#include "uart.h"
 void Serd_OS_main()
 {
     uart_init();
@@ -10,9 +10,9 @@ void Serd_OS_main()
     uart_writeArray("Initialization complete!\n");
 
     int num = 10;
-    printk("Num= %d\n",num);
-    printk("Hex= %x\n",num);
-    printk("Str= %s\n","num");
+    printk("Num= %d\n", num);
+    printk("Hex= %x\n", num);
+    printk("Str= %s\n", "num");
 
     while (1)
     {
