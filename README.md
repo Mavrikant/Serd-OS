@@ -6,7 +6,7 @@ Experimental 'operating system' for Raspberry Pi 3
 
 
 
-## Developement environment
+## Development environment
 
 - Ubuntu 22.04 or WSL 2
 ```
