@@ -9,8 +9,8 @@ void error_check(char *file, uint64_t line)
     printk("\r\nAssertion Failed [%s: %u]", file, line);
     printk("\r\nKERNEL STOPPED!\r\n");
 
-    while (1) 
-    { 
+    while (1)
+    {
         asm volatile("nop"); // Wait
     }
 }
