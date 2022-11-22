@@ -1,6 +1,8 @@
 #include "lib.h"
 #include "print.h"
 #include "uart.h"
+#include "debug.h"
+
 
 void Serd_OS_main()
 {
