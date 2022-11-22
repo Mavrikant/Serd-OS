@@ -1,4 +1,4 @@
-Experimental 'operating system' for Raspberry Pi 4
+Experimental 'operating system' for Raspberry Pi 3
 ===================================================================
 <p align="center">
 'just a hobby, won't be big and professional like gnu'
