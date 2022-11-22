@@ -11,9 +11,9 @@ void Serd_OS_main()
     uart_writeArray("Initialization complete!\r\n");
 
     int num = 10;
-    printk("Num= %d\r\n",num);
-    printk("Hex= %x\r\n",num);
-    printk("Str= %s\r\n","num");
+    printk("Num= %d\r\n", num);
+    printk("Hex= %x\r\n", num);
+    printk("Str= %s\r\n", "num");
 
     while (1)
     {
