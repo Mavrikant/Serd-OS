@@ -1,6 +1,7 @@
 #include "lib.h"
 #include "print.h"
 #include "uart.h"
+
 void Serd_OS_main()
 {
     uart_init();
@@ -22,6 +23,8 @@ void Serd_OS_main()
     printk("Hex= %x\r\n", num);
     printk("Str= %s\r\n", "num");
 
+    ASSERT(1);
+
     while (1)
     {
         char c = uart_readChar();
@@ -29,6 +32,7 @@ void Serd_OS_main()
         if (c == 'A')
         {
             uart_writeArray("\r\nA is pressed\r\n");
+            ASSERT(0);
         }
     }
 }
