@@ -24,7 +24,7 @@ _start:
     sub     w2, w2, #1
     cbnz    w2, 3b               // Loop if non-zero
 
-    // Jump to our main() routine in C (make sure it doesn't return)
-4:  bl      main
+    // Jump to our Serd_OS_main() routine in C (make sure it doesn't return)
+4:  bl      Serd_OS_main
     // In case it does return, halt the master core too
     b       1b

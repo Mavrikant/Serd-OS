@@ -167,7 +167,7 @@ void drawScoreboard(int score, int lives)
     drawChar((char)lives + 0x30, (WIDTH / 2) - 252 + (8 * 20 * 3), MARGIN - 25, 0x0f, 3);
 }
 
-void main()
+void Serd_OS_main()
 {
     struct Object *foundObject;
     char ch = 0;
@@ -179,7 +179,9 @@ void main()
     int velocity_y = 3;
 
     uart_init();
+    uart_writeText("UART is initialized\n");
     fb_init();
+    uart_writeText("GPU is initialized\n");
 
     initBricks();
     initBall();
