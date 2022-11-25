@@ -34,7 +34,6 @@ static int hex_to_string(char *buffer, int position, uint64_t digits)
         buffer[position++] = digits_buffer[i];
     }
 
-
     return size;
 }
 

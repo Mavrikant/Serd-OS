@@ -27,9 +27,7 @@ void Serd_OS_main()
 
     ASSERT(1);
 
-
     printk("We are at EL %u\r\n", (uint64_t)get_el());
-
 
     while (1)
     {
