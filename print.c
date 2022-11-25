@@ -3,6 +3,8 @@
 #include "stdint.h"
 #include "uart.h"
 
+#define MAX_BUFFER_SIZE 1024U
+
 static int read_string(char *buffer, int position, const char *string)
 {
     int index = 0;
@@ -17,7 +19,7 @@ static int read_string(char *buffer, int position, const char *string)
 
 static int hex_to_string(char *buffer, int position, uint64_t digits)
 {
-    char digits_buffer[25];
+    char digits_buffer[25] = {0};
     char digits_map[16] = "0123456789ABCDEF";
     int size = 0;
 
@@ -32,15 +34,14 @@ static int hex_to_string(char *buffer, int position, uint64_t digits)
         buffer[position++] = digits_buffer[i];
     }
 
-    buffer[position++] = '\0';
 
-    return size + 1;
+    return size;
 }
 
 static int udecimal_to_string(char *buffer, int position, uint64_t digits)
 {
     char digits_map[10] = "0123456789";
-    char digits_buffer[25];
+    char digits_buffer[25] = {0};
     int size = 0;
 
     do
@@ -71,12 +72,9 @@ static int decimal_to_string(char *buffer, int position, int64_t digits)
     size += udecimal_to_string(buffer, position, (uint64_t)digits);
     return size;
 }
-
-static void write_console(const char *buffer, int size) { uart_writeArray(buffer); }
-
 int printk(const char *format, ...)
 {
-    char buffer[1024];
+    char buffer[MAX_BUFFER_SIZE] = {0};
     int buffer_size = 0;
     int64_t integer = 0;
     char *string = 0;
@@ -120,8 +118,8 @@ int printk(const char *format, ...)
             }
         }
     }
-
-    write_console(buffer, buffer_size);
+    buffer[buffer_size++] = '\0';
+    uart_writeArray(buffer);
     va_end(args);
 
     return buffer_size;
