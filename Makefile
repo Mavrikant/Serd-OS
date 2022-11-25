@@ -1,9 +1,11 @@
 CFILES = $(wildcard *.c)
 SFILES = $(wildcard *.S)
 OFILES = $(CFILES:.c=.o) $(SFILES:.S=.o) 
-CLANGFLAGS = -Wall -O2 -ffreestanding -mcpu=cortex-a72+nosimd -fno-common -ffunction-sections -fdata-sections
+CLANGFLAGS = -Wall -O0 -ffreestanding -mcpu=cortex-a72+nosimd -fno-common -ffunction-sections -fdata-sections
 
 all: clean kernel8.img
+
+run: clean kernel8.img qemu
 
 %.o: %.S
 	clang --target=aarch64-elf $(CLANGFLAGS) -c $< -o $@
@@ -18,5 +20,5 @@ kernel8.img: $(OFILES)
 clean:
 	/bin/rm kernel8.elf *.o *.img *.map> /dev/null 2> /dev/null || true
 
-run:
+qemu:
 	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial stdio
