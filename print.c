@@ -74,10 +74,7 @@ static int decimal_to_string(char *buffer, int position, int64_t digits)
 
 static void write_console(const char *buffer, int size)
 {
-    for (int i = 0; i < size; i++)
-    {
-        uart_writeChar(buffer[i]);
-    }
+   uart_writeArray(buffer);
 }
 
 int printk(const char *format, ...)

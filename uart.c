@@ -90,7 +90,7 @@ char uart_readChar()
 /**
  * Display a string
  */
-void uart_writeArray(char *s)
+void uart_writeArray(const char *s)
 {
     while (*s)
     {
