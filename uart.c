@@ -1,7 +1,7 @@
+#include "uart.h"
 #include "mbox.h"
 #include "registers.h"
 #include "stdint.h"
-#include "uart.h"
 
 // TODO This file needs refactoring!
 

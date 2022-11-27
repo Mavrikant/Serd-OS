@@ -1,9 +1,8 @@
 #include "debug.h"
 #include "lib.h"
 #include "print.h"
-#include "uart.h"
 #include "rand.h"
-
+#include "uart.h"
 
 void Serd_OS_main()
 {
@@ -12,34 +11,32 @@ void Serd_OS_main()
 
     // TODO initilaze other peripherals
     uart_writeArray("\r\n** Initialization complete! **\r\n\r\n");
-/*
-    int num = 10;
-    printk("Num= %d\r\n", num);
-    printk("Str= %s\r\n", "num");
-    printk("Hex= %x\r\n", num);
-    printk("Hex= %x\r\n", num);
+    /*
+        int num = 10;
+        printk("Num= %d\r\n", num);
+        printk("Str= %s\r\n", "num");
+        printk("Hex= %x\r\n", num);
+        printk("Hex= %x\r\n", num);
 
-    int num2 = 0;
-    //memcpy(&num, &num2, 4);
+        int num2 = 0;
+        //memcpy(&num, &num2, 4);
 
-    printk("Num= %d\r\n", num);
-    printk("Hex= %x\r\n", num);
-    printk("Str= %s\r\n", "num");
+        printk("Num= %d\r\n", num);
+        printk("Hex= %x\r\n", num);
+        printk("Str= %s\r\n", "num");
 
-    ASSERT(1);
-    
-*/
-    //printk("We are at EL %u\r\n", (uint64_t)get_el());
+        ASSERT(1);
+
+    */
+    // printk("We are at EL %u\r\n", (uint64_t)get_el());
 
     uart_writeArray("Current EL is: ");
     uart_writeHex(get_current_el());
     uart_writeArray("\n");
     uart_writeArray("Rand int: ");
-    uart_writeHex(rand(0,100));
+    uart_writeHex(rand(0, 100));
     uart_writeArray("\n");
-    
 
-    
     while (1)
     {
         char c = uart_readChar();
