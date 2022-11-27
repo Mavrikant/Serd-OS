@@ -3,6 +3,6 @@
 
 #include "stdint.h"
 
-int printk(const char *format, ...);
+uint32_t printk(const char *format, ...);
 
 #endif

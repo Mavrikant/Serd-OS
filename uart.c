@@ -2,6 +2,8 @@
 #include "mbox.h"
 #include "registers.h"
 #include "stdint.h"
+#include "print.h"
+#include "delay.h"
 
 // TODO This file needs refactoring!
 
@@ -61,8 +63,9 @@ void uart_init()
     *UART0_FBRD = 0xB;
     *UART0_LCRH = 0x7 << 4; // 8n1, enable FIFOs
     *UART0_CR = 0x301;      // enable Tx, Rx, UART
-    uart_writeArray("\r\n-------------------\r\n");
-    uart_writeArray("UART is initialized!\r\n");
+
+    printk("\r\n%u ms: -------------------\r\n",(uint64_t)get_system_timer()/1000);
+    printk("%u ms: UART is initialized!\r\n",(uint64_t)get_system_timer()/1000);
 }
 
 /**

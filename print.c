@@ -71,17 +71,17 @@ static int decimal_to_string(char *buffer, int position, int64_t digits)
     size += udecimal_to_string(buffer, position, (uint64_t)digits);
     return size;
 }
-int printk(const char *format, ...)
+uint32_t printk(const char *format, ...)
 {
     char buffer[MAX_BUFFER_SIZE] = {0};
-    int buffer_size = 0;
+    uint32_t buffer_size = 0;
     int64_t integer = 0;
     char *string = 0;
     va_list args;
 
     va_start(args, format);
 
-    for (int i = 0; format[i] != '\0'; i++)
+    for (uint32_t i = 0; format[i] != '\0'; i++)
     {
         if (format[i] != '%')
         {
