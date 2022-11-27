@@ -42,4 +42,10 @@
 #define UART0_IMSC ((volatile unsigned int *)(MMIO_BASE + 0x00201038))
 #define UART0_ICR ((volatile unsigned int *)(MMIO_BASE + 0x00201044))
 
+/* Random Number Generator registers */
+#define RNG_CTRL        ((volatile unsigned int*)(MMIO_BASE+0x00104000))
+#define RNG_STATUS      ((volatile unsigned int*)(MMIO_BASE+0x00104004))
+#define RNG_DATA        ((volatile unsigned int*)(MMIO_BASE+0x00104008))
+#define RNG_INT_MASK    ((volatile unsigned int*)(MMIO_BASE+0x00104010))
+
 #endif // REGISTER_H

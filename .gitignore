@@ -2,6 +2,7 @@
 *.elf
 *.img
 *.map
+*.dump
 .vscode
 .vs
 .DS_Store

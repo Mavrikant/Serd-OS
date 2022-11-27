@@ -1,5 +1,7 @@
 #include "mbox.h"
 #include "registers.h"
+#include "stdint.h"
+#include "uart.h"
 
 // TODO This file needs refactoring!
 
@@ -59,6 +61,7 @@ void uart_init()
     *UART0_FBRD = 0xB;
     *UART0_LCRH = 0x7 << 4; // 8n1, enable FIFOs
     *UART0_CR = 0x301;      // enable Tx, Rx, UART
+    uart_writeArray("UART is initialized!\r\n");
 }
 
 /**
@@ -104,12 +107,13 @@ void uart_writeArray(const char *s)
 /**
  * Display a binary value in hexadecimal
  */
-void uart_writeHex(unsigned int d)
+void uart_writeHex(uint32_t d)
 {
-    for (int c = 28; c >= 0; c -= 4)
+    uart_writeArray("0x");
+    for (int32_t c = 28; c >= 0; c -= 4)
     {
         // get highest tetrad
-        unsigned int n = (d >> c) & 0xF;
+        uint32_t n = (d >> c) & 0xF;
         // 0-9 => '0'-'9', 10-15 => 'A'-'F'
         n += n > 9 ? 0x37 : 0x30;
         uart_writeChar(n);
