@@ -1,4 +1,5 @@
 #include "debug.h"
+#include "delay.h"
 #include "lib.h"
 #include "print.h"
 #include "rand.h"
@@ -33,9 +34,14 @@ void Serd_OS_main()
     uart_writeArray("Current EL is: ");
     uart_writeHex(get_current_el());
     uart_writeArray("\n");
-    uart_writeArray("Rand int: ");
-    uart_writeHex(rand(0, 100));
-    uart_writeArray("\n");
+
+    while (1)
+    {
+        wait_msec(1000);
+        uart_writeArray("Rand int: ");
+        uart_writeHex(rand(0, 100));
+        uart_writeArray("\n");
+    }
 
     while (1)
     {

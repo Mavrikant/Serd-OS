@@ -48,4 +48,8 @@
 #define RNG_DATA ((volatile unsigned int *)(MMIO_BASE + 0x00104008))
 #define RNG_INT_MASK ((volatile unsigned int *)(MMIO_BASE + 0x00104010))
 
+/* System Timer registers */
+#define SYSTMR_LO ((volatile unsigned int *)(MMIO_BASE + 0x00003004))
+#define SYSTMR_HI ((volatile unsigned int *)(MMIO_BASE + 0x00003008))
+
 #endif // REGISTER_H
