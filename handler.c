@@ -14,6 +14,7 @@ void handler(uint64_t numid, uint64_t esr, uint64_t elr)
         uart_writeHex(elr);
         while (1)
         {
+            asm volatile("nop"); // Wait
         }
         break;
 
@@ -21,6 +22,7 @@ void handler(uint64_t numid, uint64_t esr, uint64_t elr)
         uart_writeArray("unknown exception\r\n");
         while (1)
         {
+            asm volatile("nop"); // Wait
         }
         break;
     }

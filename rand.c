@@ -1,6 +1,7 @@
 
 #include "rand.h"
 #include "registers.h"
+#include "uart.h"
 
 /**
  * Initialize the RNG
