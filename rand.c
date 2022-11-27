@@ -1,9 +1,8 @@
 
 #include "rand.h"
-#include "registers.h"
-#include "print.h"
 #include "delay.h"
-
+#include "print.h"
+#include "registers.h"
 
 /**
  * Initialize the RNG
@@ -16,7 +15,7 @@ void rand_init()
     // enable
     *RNG_CTRL |= 1;
 
-    printk("%u ms: RNG is initialized!\r\n",(uint64_t)get_system_timer()/1000);
+    printk("%u ms: RNG is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
 }
 
 /**
