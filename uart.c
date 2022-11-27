@@ -61,6 +61,7 @@ void uart_init()
     *UART0_FBRD = 0xB;
     *UART0_LCRH = 0x7 << 4; // 8n1, enable FIFOs
     *UART0_CR = 0x301;      // enable Tx, Rx, UART
+    uart_writeArray("\r\n-------------------\r\n");
     uart_writeArray("UART is initialized!\r\n");
 }
 

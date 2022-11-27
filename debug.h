@@ -12,4 +12,5 @@
 
 void error_check(char *file, uint64_t line);
 uint32_t get_current_el();
-#endif
+
+#endif // _DEBUG_H
