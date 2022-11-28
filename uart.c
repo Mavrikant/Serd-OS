@@ -5,7 +5,6 @@
 #include "registers.h"
 #include "stdint.h"
 
-
 // TODO This file needs refactoring!
 
 /* PL011 UART registers */

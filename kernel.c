@@ -18,13 +18,13 @@ void Serd_OS_main()
     int num = 10;
     printk("Num: %d\r\n", num);
     printk("Str: %s\r\n", "num");
-    //printk("Hex: %x\r\n", num);
+    // printk("Hex: %x\r\n", num);
 
     int num2 = 0;
     memcpy(&num, &num2, 4);
 
     printk("Num: %d\r\n", num);
-    //printk("Hex: %x\r\n", num);
+    // printk("Hex: %x\r\n", num);
     printk("Str: %s\r\n", "num");
     printk("Long: %u\r\n", (uint64_t)2147483647L);
     printk("Rand int: %d\r\n", rand(0, 100));
@@ -41,7 +41,7 @@ void Serd_OS_main()
         {
             printk("\r\nRand int: %d\r\n", rand(0, 100));
         }
-        else if (c == 'E') //Exception
+        else if (c == 'E') // Exception
         {
             char *p = (char *)0xffff000000000000;
             *p = 1;
