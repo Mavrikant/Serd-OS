@@ -5,6 +5,7 @@
 #include "registers.h"
 #include "stdint.h"
 
+
 // TODO This file needs refactoring!
 
 /* PL011 UART registers */
@@ -64,8 +65,18 @@ void uart_init()
     *UART0_LCRH = 0x7 << 4; // 8n1, enable FIFOs
     *UART0_CR = 0x301;      // enable Tx, Rx, UART
 
-    printk("\r\n%u ms: -------------------\r\n", (uint64_t)get_system_timer() / 1000);
-    printk("%u ms: UART is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
+    uart_writeArray("\r\n                                                                           ");
+    uart_writeArray("\r\n                                                                           ");
+    uart_writeArray("\r\n .oooooo..o                          .o8            .oooooo.    .oooooo..o ");
+    uart_writeArray("\r\nd8P'    `Y8                         *888           d8P'  `Y8b  d8P'    `Y8 ");
+    uart_writeArray("\r\nY88bo.       .ooooo.  oooo d8b  .oooo888          888      888 Y88bo.      ");
+    uart_writeArray("\r\n `*Y8888o.  d88' `88b `888**8P d88' `888          888      888  `*Y8888o.  ");
+    uart_writeArray("\r\n     `*Y88b 888ooo888  888     888   888  8888888 888      888      `*Y88b ");
+    uart_writeArray("\r\noo     .d8P 888    .o  888     888   888          `88b    d88' oo     .d8P ");
+    uart_writeArray("\r\n8**88888P'  `Y8bod8P' d888b    `Y8bod88P*          `Y8bood8P'  8**88888P'  ");
+    uart_writeArray("\r\n                                                                           ");
+    uart_writeArray("\r\n                                                                           ");
+    printk("\r\n%u ms: UART is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
 }
 
 /**

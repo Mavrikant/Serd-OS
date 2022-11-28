@@ -5,9 +5,9 @@
 
 #define MAX_BUFFER_SIZE 1024U
 
-static int read_string(char *buffer, int position, const char *string)
+static uint32_t read_string(char *buffer, uint32_t position, const char *string)
 {
-    int index = 0;
+    uint32_t index = 0;
 
     for (index = 0; string[index] != '\0'; index++)
     {
@@ -17,11 +17,11 @@ static int read_string(char *buffer, int position, const char *string)
     return index;
 }
 
-static int hex_to_string(char *buffer, int position, uint64_t digits)
+static uint32_t hex_to_string(char *buffer, uint32_t position, uint64_t digits)
 {
     char digits_buffer[25] = {0};
     char digits_map[16] = "0123456789ABCDEF";
-    int size = 0;
+    uint32_t size = 0;
 
     do
     {
@@ -37,7 +37,7 @@ static int hex_to_string(char *buffer, int position, uint64_t digits)
     return size;
 }
 
-static int udecimal_to_string(char *buffer, int position, uint64_t digits)
+static int udecimal_to_string(char *buffer, uint32_t position, uint64_t digits)
 {
     char digits_map[10] = "0123456789";
     char digits_buffer[25] = {0};
@@ -57,9 +57,9 @@ static int udecimal_to_string(char *buffer, int position, uint64_t digits)
     return size;
 }
 
-static int decimal_to_string(char *buffer, int position, int64_t digits)
+static uint32_t decimal_to_string(char *buffer, uint32_t position, int64_t digits)
 {
-    int size = 0;
+    uint32_t size = 0;
 
     if (digits < 0)
     {
