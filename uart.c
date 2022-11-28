@@ -121,10 +121,10 @@ void uart_writeArray(const char *s)
 /**
  * Display a binary value in hexadecimal
  */
-void uart_writeHex(uint32_t d)
+void uart_writeHex(uint64_t d)
 {
     uart_writeArray("0x");
-    for (int32_t c = 28; c >= 0; c -= 4)
+    for (int64_t c = 60; c >= 0; c -= 4)
     {
         // get highest tetrad
         uint32_t n = (d >> c) & 0xF;

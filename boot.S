@@ -14,13 +14,13 @@ end:
 kernel_entry:
 
     // disable coprocessor traps, its necerrary for work of printk. 
-	// prontk uses variadic arguments, thus compiler wants to store all register into stack.
+	// printk uses variadic arguments, thus compiler wants to store all register into stack.
 	// accesing to FP registers was causing an exception.
-    mov     x0, #0x33FF
-    msr     cptr_el2, x0
-    msr     hstr_el2, xzr
-    mov     x0, #(3 << 20)
-    msr     cpacr_el1, x0
+    mov x0, #0x33FF
+    msr cptr_el2, x0
+    msr hstr_el2, xzr
+    mov x0, #(3 << 20)
+    msr cpacr_el1, x0
 
 	//Change EL
 	mrs x0, CurrentEl

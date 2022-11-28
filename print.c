@@ -19,8 +19,8 @@ static uint32_t read_string(char *buffer, uint32_t position, const char *string)
 
 static uint32_t hex_to_string(char *buffer, uint32_t position, uint64_t digits)
 {
+    const char digits_map[16] = "0123456789ABCDEF";
     char digits_buffer[25] = {0};
-    char digits_map[16] = "0123456789ABCDEF";
     uint32_t size = 0;
 
     do
@@ -39,7 +39,7 @@ static uint32_t hex_to_string(char *buffer, uint32_t position, uint64_t digits)
 
 static int udecimal_to_string(char *buffer, uint32_t position, uint64_t digits)
 {
-    char digits_map[10] = "0123456789";
+    const char digits_map[10] = "0123456789";
     char digits_buffer[25] = {0};
     int size = 0;
 
