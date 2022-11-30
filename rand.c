@@ -26,6 +26,8 @@ uint32_t rand(uint32_t min, uint32_t max)
     // may need to wait for entropy: bits 24-31 store how many words are
     // available for reading; require at least one
     while (!((*RNG_STATUS) >> 24))
+    {
         asm volatile("nop");
+    }
     return *RNG_DATA % (max - min) + min;
 }

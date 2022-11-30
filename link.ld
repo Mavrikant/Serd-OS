@@ -5,10 +5,10 @@ SECTIONS
     .text : { 
         KEEP(*(.text.boot)) *(.text .text.* .gnu.linkonce.t*) 
     }
-    
     .rodata : {
          *(.rodata .rodata.* .gnu.linkonce.r*) 
     }
+    . = ALIGN(4096);
     PROVIDE(_data = .);
     
     .data : {
@@ -22,7 +22,7 @@ SECTIONS
         *(COMMON)
         __bss_end = .;
     }
-
+    . = ALIGN(4096);
     _end = .;
 
    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame*) }

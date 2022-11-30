@@ -37,20 +37,18 @@ static uint32_t hex_to_string(char *buffer, uint32_t position, uint64_t digits)
     return size;
 }
 
-static int udecimal_to_string(char *buffer, uint32_t position, uint64_t digits)
+static int udecimal_to_string(char *buffer, int position, uint64_t digits)
 {
     const char digits_map[10] = "0123456789";
-    char digits_buffer[25] = {0};
+    char digits_buffer[25];
     int size = 0;
 
-    do
-    {
+    do {
         digits_buffer[size++] = digits_map[digits % 10];
         digits /= 10;
     } while (digits != 0);
 
-    for (int i = size - 1; i >= 0; i--)
-    {
+    for (int i = size-1; i >= 0; i--) {
         buffer[position++] = digits_buffer[i];
     }
 

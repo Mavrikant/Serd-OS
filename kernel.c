@@ -45,6 +45,8 @@ void Serd_OS_main()
         {
             char *p = (char *)0xffff000000000000;
             *p = 1;
+
+            printk("\r\nReturn from exception\r\n");
         }
     }
 }
