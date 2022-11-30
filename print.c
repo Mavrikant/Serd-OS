@@ -43,12 +43,14 @@ static int udecimal_to_string(char *buffer, int position, uint64_t digits)
     char digits_buffer[25];
     int size = 0;
 
-    do {
+    do
+    {
         digits_buffer[size++] = digits_map[digits % 10];
         digits /= 10;
     } while (digits != 0);
 
-    for (int i = size-1; i >= 0; i--) {
+    for (int i = size - 1; i >= 0; i--)
+    {
         buffer[position++] = digits_buffer[i];
     }
 
