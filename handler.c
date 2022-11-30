@@ -21,6 +21,7 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
         break;
     }
     uart_writeArray(": ");
+
     // decode exception type (some, not all. See ARM DDI0487B_b chapter D10.2.28)
     switch (esr >> 26)
     {
@@ -61,6 +62,7 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
         uart_writeArray("Unknown");
         break;
     }
+
     // decode data abort cause
     if (esr >> 26 == 0b100100 || esr >> 26 == 0b100101)
     {
@@ -96,6 +98,7 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
             break;
         }
     }
+
     // dump registers
     uart_writeArray(":\n  ESR_EL1 ");
     uart_writeHex(esr);
@@ -106,11 +109,4 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
     uart_writeArray(" FAR_EL1 ");
     uart_writeHex(far);
     uart_writeArray("\n");
-    // no return from exception for now
-    /*
-    while (1)
-    {
-        asm volatile("nop");
-    };
-    */
 }
