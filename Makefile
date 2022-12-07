@@ -1,16 +1,18 @@
 CFILES = $(wildcard *.c)
-SFILES = $(wildcard *.S)
-OFILES = $(CFILES:.c=.o) $(SFILES:.S=.o) 
+SFILES = $(wildcard *.s)
+OFILES = $(CFILES:.c=.o) $(SFILES:.s=.o) 
 # raspi 3: Broadcom BCM2837 ARMv8-A Architecture Cortex-A53 VFPv4 (VFP and NEON)
 # raspi 4: Broadcom BCM2711 ARMv8-A Architecture Cortex-A72 VFPv4 (VFP and NEON)
 CLANGFLAGS = -Wall -O0 -ffreestanding -nostdlib -mcpu=cortex-a53+nosimd -fno-common -ffunction-sections -fdata-sections
+SLANGFLAGS = -Wall -O0 -nostdlib -mcpu=cortex-a53+nosimd 
+
 
 all: clean kernel8.img
 
 run: clean kernel8.img qemu
 
-%.o: %.S
-	clang --target=aarch64-elf $(CLANGFLAGS) -c $< -o $@
+%.o: %.s
+	clang --target=aarch64-elf $(SLANGFLAGS) -c $< -o $@
 
 %.o: %.c
 	clang --target=aarch64-elf $(CLANGFLAGS) -c $< -o $@

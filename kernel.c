@@ -4,11 +4,14 @@
 #include "print.h"
 #include "rand.h"
 #include "uart.h"
+#include "handler.h"
 
 void Serd_OS_main()
 {
     uart_init();
     rand_init();
+    //init_timer();
+    //enable_irq();
 
     // TODO initilaze other peripherals
 
@@ -18,13 +21,13 @@ void Serd_OS_main()
     int num = 10;
     printk("Num: %d\r\n", num);
     printk("Str: %s\r\n", "num");
-    // printk("Hex: %x\r\n", num);
+    printk("Hex: %x\r\n", num);
 
     int num2 = 0;
     memcpy(&num, &num2, 4);
 
     printk("Num: %d\r\n", num);
-    // printk("Hex: %x\r\n", num);
+    printk("Hex: %x\r\n", num);
     printk("Str: %s\r\n", "num");
     printk("Long: %u\r\n", (uint64_t)2147483647L);
     printk("Rand int: %d\r\n", rand(0, 100));
@@ -35,7 +38,7 @@ void Serd_OS_main()
         uart_writeChar(c);
         if (c == 'A')
         {
-            uart_writeArray("\r\nA is pressed\r\n");
+            printk("\r\nA is pressed\r\n");
         }
         else if (c == 'R')
         {

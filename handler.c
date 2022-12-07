@@ -1,6 +1,38 @@
+#include "lib.h"
 #include "print.h"
+#include "registers.h"
 #include "stdint.h"
 #include "uart.h"
+
+void enable_timer(void);
+uint32_t read_timer_status(void);
+void set_timer_interval(uint32_t value);
+uint32_t read_timer_freq(void);
+
+static uint32_t timer_interval = 0;
+static uint64_t ticks = 0;
+
+void init_timer(void)
+{
+    timer_interval = read_timer_freq() / 100;
+    enable_timer();
+    out_word(CNTP_EL0, (1 << 1));
+    printk("%u ms: Timer is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
+    //printk("timer_interval: %u \r\n", timer_interval);
+}
+
+static void timer_interrupt_handler(void)
+{
+    uint32_t status = read_timer_status();
+    if (status & (1 << 2)) {
+        ticks++;
+        if (ticks % 100 == 0) {
+            printk("timer %d \r\n", ticks);
+        }
+
+        set_timer_interval(timer_interval);
+    }
+}
 
 void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsigned long spsr, unsigned long far)
 {
@@ -59,7 +91,7 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
         uart_writeArray("Floating point");
         break;
     default:
-        uart_writeArray("Unknown");
+        uart_writeArray("Unknown (default)");
         break;
     }
 
@@ -109,4 +141,10 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
     uart_writeArray(" FAR_EL1 ");
     uart_writeHex(far);
     uart_writeArray("\n");
+
+    uint32_t irq = in_word(CNTP_STATUS_EL0);
+    if (irq & (1 << 1)) {
+        timer_interrupt_handler();
+    }
+
 }
