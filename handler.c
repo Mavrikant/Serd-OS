@@ -18,15 +18,17 @@ void init_timer(void)
     enable_timer();
     out_word(CNTP_EL0, (1 << 1));
     printk("%u ms: Timer is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
-    //printk("timer_interval: %u \r\n", timer_interval);
+    // printk("timer_interval: %u \r\n", timer_interval);
 }
 
 static void timer_interrupt_handler(void)
 {
     uint32_t status = read_timer_status();
-    if (status & (1 << 2)) {
+    if (status & (1 << 2))
+    {
         ticks++;
-        if (ticks % 100 == 0) {
+        if (ticks % 100 == 0)
+        {
             printk("timer %d \r\n", ticks);
         }
 
@@ -143,8 +145,8 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
     uart_writeArray("\n");
 
     uint32_t irq = in_word(CNTP_STATUS_EL0);
-    if (irq & (1 << 1)) {
+    if (irq & (1 << 1))
+    {
         timer_interrupt_handler();
     }
-
 }

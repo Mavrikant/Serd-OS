@@ -1,17 +1,17 @@
 #include "debug.h"
 #include "delay.h"
+#include "handler.h"
 #include "lib.h"
 #include "print.h"
 #include "rand.h"
 #include "uart.h"
-#include "handler.h"
 
 void Serd_OS_main()
 {
     uart_init();
     rand_init();
-    //init_timer();
-    //enable_irq();
+    // init_timer();
+    // enable_irq();
 
     // TODO initilaze other peripherals
 

@@ -33,7 +33,7 @@
 #define MBOX_CONFIG ((volatile unsigned int *)(VIDEOCORE_MBOX + 0x1C))
 #define MBOX_WRITE ((volatile unsigned int *)(VIDEOCORE_MBOX + 0x20))
 
-// PL011 UART registers 
+// PL011 UART registers
 #define UART0_DR ((volatile unsigned int *)(MMIO_BASE + 0x00201000))
 #define UART0_FR ((volatile unsigned int *)(MMIO_BASE + 0x00201018))
 #define UART0_IBRD ((volatile unsigned int *)(MMIO_BASE + 0x00201024))
@@ -53,8 +53,8 @@
 #define SYSTMR_LO ((volatile unsigned int *)(MMIO_BASE + 0x00003004))
 #define SYSTMR_HI ((volatile unsigned int *)(MMIO_BASE + 0x00003008))
 
-// Timer registers 
-#define CNTP_EL0	        ((volatile unsigned int *)(0x40000040))
-#define CNTP_STATUS_EL0     ((volatile unsigned int *)(0x40000060))
+// Timer registers
+#define CNTP_EL0 ((volatile unsigned int *)(0x40000040))
+#define CNTP_STATUS_EL0 ((volatile unsigned int *)(0x40000060))
 
 #endif // REGISTER_H
