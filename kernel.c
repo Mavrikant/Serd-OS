@@ -6,6 +6,8 @@
 #include "rand.h"
 #include "uart.h"
 
+uint64_t get_system_time() { return (uint64_t)get_system_timer() / 1000; }
+
 void Serd_OS_main()
 {
     uart_init();
@@ -18,7 +20,7 @@ void Serd_OS_main()
     printk("\r\n%u ms: ** Initialization complete! **\r\n\r\n", (uint64_t)get_system_timer() / 1000);
 
     printk("Current Exception Level: %u\r\n", (uint64_t)get_el());
-    int num = 10;
+    /*int num = 10;
     printk("Num: %d\r\n", num);
     printk("Str: %s\r\n", "num");
     printk("Hex: %x\r\n", num);
@@ -31,7 +33,44 @@ void Serd_OS_main()
     printk("Str: %s\r\n", "num");
     printk("Long: %u\r\n", (uint64_t)2147483647L);
     printk("Rand int: %d\r\n", rand(0, 100));
+*/
+    printk("%d ms: Starting Schedular\r\n", get_system_time());
 
+    while (1)
+    {
+        uint64_t frameStart = get_system_time();
+
+        uint64_t task1_start = get_system_time();
+        printk("%d ms: Task1 running...\r\n", task1_start);
+        wait_msec(rand(0, 600));
+
+        printk("%d ms: Task1 took %d ms \r\n", get_system_time(), get_system_time() - task1_start);
+        if ((frameStart + 500) < get_system_time())
+        {
+            printk("%d ms: Deadline miss reboot\r\n", get_system_time());
+        }
+        while ((frameStart + 500) > get_system_time())
+        {
+            asm volatile("nop"); // Wait
+        }
+
+        uint64_t task2_start = get_system_time();
+
+        printk("%d ms: Task2 running...\r\n", task2_start);
+        wait_msec(rand(0, 200));
+
+        printk("%d ms: Task2 took %d ms \r\n", get_system_time(), get_system_time() - task2_start);
+        if ((frameStart + 1000) < get_system_time())
+        {
+            printk("%d ms: Deadline miss reboot\r\n", get_system_time());
+        }
+        while ((frameStart + 1000) > get_system_time())
+        {
+            asm volatile("nop"); // Wait
+        }
+    }
+
+    /*
     while (1)
     {
         char c = uart_readChar();
@@ -52,4 +91,5 @@ void Serd_OS_main()
             printk("\r\nReturn from exception\r\n");
         }
     }
+    */
 }
