@@ -3,8 +3,8 @@ SFILES = $(wildcard *.s)
 OFILES = $(CFILES:.c=.o) $(SFILES:.s=.o) 
 # raspi 3: Broadcom BCM2837 ARMv8-A Architecture Cortex-A53 VFPv4 (VFP and NEON)
 # raspi 4: Broadcom BCM2711 ARMv8-A Architecture Cortex-A72 VFPv4 (VFP and NEON)
-CLANGFLAGS = -Wall -O0 -ffreestanding -nostdlib -mcpu=cortex-a53+nosimd -fno-common -ffunction-sections -fdata-sections
-SLANGFLAGS = -Wall -O0 -nostdlib -mcpu=cortex-a53+nosimd 
+CLANGFLAGS = -Wall -O0 -g -ffreestanding -nostdlib -mcpu=cortex-a53+nosimd -fno-common -ffunction-sections -fdata-sections
+SLANGFLAGS = -Wall -O0 -g -nostdlib -mcpu=cortex-a53+nosimd 
 
 
 all: clean kernel8.img
@@ -29,4 +29,4 @@ qemu:
 	qemu-system-aarch64 -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio
 
 debug:
-	qemu-system-aarch64 -S -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio
+	qemu-system-aarch64 -S -s -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio

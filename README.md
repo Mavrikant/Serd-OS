@@ -14,6 +14,7 @@
 ```bash
     sudo apt install llvm lld clang
     sudo apt install qemu-system-arm
+    sudo apt install gdb gdb-multiarch
 ```
 
   - VS Code
