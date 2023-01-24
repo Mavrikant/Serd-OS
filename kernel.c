@@ -5,6 +5,7 @@
 #include "print.h"
 #include "rand.h"
 #include "uart.h"
+#include "powercontrol.h"
 
 uint64_t get_system_time() { return (uint64_t)get_system_timer() / 1000; }
 
@@ -42,12 +43,13 @@ void Serd_OS_main()
 
         uint64_t task1_start = get_system_time();
         printk("%d ms: Task1 running...\r\n", task1_start);
-        wait_msec(rand(0, 600));
+        wait_msec(rand(0, 800));
 
         printk("%d ms: Task1 took %d ms \r\n", get_system_time(), get_system_time() - task1_start);
         if ((frameStart + 500) < get_system_time())
         {
             printk("%d ms: Deadline miss reboot\r\n", get_system_time());
+            reboot();
         }
         while ((frameStart + 500) > get_system_time())
         {
@@ -63,6 +65,7 @@ void Serd_OS_main()
         if ((frameStart + 1000) < get_system_time())
         {
             printk("%d ms: Deadline miss reboot\r\n", get_system_time());
+            reboot();
         }
         while ((frameStart + 1000) > get_system_time())
         {
