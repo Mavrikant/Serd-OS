@@ -1,7 +1,7 @@
+#include "datatypes.h"
 #include "lib.h"
 #include "print.h"
 #include "registers.h"
-#include "datatypes.h"
 #include "uart.h"
 
 void enable_timer(void);

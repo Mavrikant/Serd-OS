@@ -1,9 +1,9 @@
 #include "uart.h"
+#include "datatypes.h"
 #include "delay.h"
 #include "mbox.h"
 #include "print.h"
 #include "registers.h"
-#include "datatypes.h"
 
 // TODO This file needs refactoring!
 

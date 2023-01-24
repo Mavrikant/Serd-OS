@@ -3,10 +3,10 @@
 
 #include "datatypes.h"
 
-typedef void (*TASK) (void);
+typedef void (*TASK)(void);
 
-#define MAIN_TASK_COUNT_LIMIT         10U
-#define SUB_TASK_COUNT_LIMIT          10U
+#define MAIN_TASK_COUNT_LIMIT 10U
+#define SUB_TASK_COUNT_LIMIT 10U
 
 typedef struct SubTaskType
 {
@@ -27,6 +27,6 @@ typedef struct ScheduleType
     MainTaskType taskList[MAIN_TASK_COUNT_LIMIT];
 } ScheduleType;
 
-void start_schedular(const ScheduleType * schedule);
+void start_schedular(const ScheduleType *schedule);
 
 #endif // _SCHEDULER_H
