@@ -2,10 +2,10 @@
 #include "delay.h"
 #include "handler.h"
 #include "lib.h"
+#include "powercontrol.h"
 #include "print.h"
 #include "rand.h"
 #include "uart.h"
-#include "powercontrol.h"
 
 uint64_t get_system_time() { return (uint64_t)get_system_timer() / 1000; }
 
