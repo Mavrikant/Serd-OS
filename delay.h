@@ -1,7 +1,7 @@
 #ifndef _DELAY_H
 #define _DELAY_H
 
-#include "stdint.h"
+#include "datatypes.h"
 
 uint64_t get_system_timer();
 void wait_cycles(uint32_t n);

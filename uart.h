@@ -1,9 +1,9 @@
 
 #ifndef UART_H
 #define UART_H
-#include "stdint.h"
+#include "datatypes.h"
 
-void uart_init();
+void init_uart();
 void uart_writeChar(unsigned int c);
 char uart_readChar();
 void uart_writeArray(const char *s);

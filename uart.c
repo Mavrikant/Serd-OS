@@ -3,7 +3,7 @@
 #include "mbox.h"
 #include "print.h"
 #include "registers.h"
-#include "stdint.h"
+#include "datatypes.h"
 
 // TODO This file needs refactoring!
 
@@ -20,7 +20,7 @@
 /**
  * Set baud rate and characteristics (115200 8N1) and map to GPIO
  */
-void uart_init()
+void init_uart()
 {
     register unsigned int r;
 

@@ -1,6 +1,6 @@
 #include "print.h"
 #include "stdarg.h"
-#include "stdint.h"
+#include "datatypes.h"
 #include "uart.h"
 
 #define MAX_BUFFER_SIZE 1024U

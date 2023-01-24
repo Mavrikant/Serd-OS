@@ -7,7 +7,7 @@
 /**
  * Initialize the RNG
  */
-void rand_init()
+void init_rand()
 {
     *RNG_STATUS = 0x40000;
     // mask interrupt

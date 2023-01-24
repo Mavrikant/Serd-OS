@@ -1,5 +1,5 @@
+#include "datatypes.h"
 #include "registers.h"
-#include "stdint.h"
 #include "uart.h"
 
 // return 64-bit system timer that works at 1 MHz
@@ -17,6 +17,8 @@ uint64_t get_system_timer()
     }
     return ((uint64_t)h << 32) | l; // merge value
 }
+
+uint64_t get_system_timer_ms() { return get_system_timer() / (uint64_t)1000; }
 
 // wait cpu cycles
 void wait_cycles(uint32_t n)
