@@ -23,10 +23,10 @@
     - [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack)
 
 ## TODO
-- Create a docker iamge for development enverioment
-- Better start screen withj animation
+- Create a docker image for development environment
+- Better start screen with animation
 - Sound support
-- Preemptive scheduler
+- Pre-emptive scheduler
 - Permanant storage 
 - Ethernet support
 - Bluetooth
@@ -35,7 +35,9 @@
 - PWM driver
 - SPI driver
 - GDB debug enveriment
-- 
+- Math functions
+- OpenGL support
+- 3D graphics
 
 
 ## Developers
