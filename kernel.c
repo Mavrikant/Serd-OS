@@ -61,6 +61,7 @@ void Serd_OS_main()
     fb_showlLoadingScreen(); // display a pixmap
     wait_msec(1000);
     fb_cleanScreen();
+    fb_showHacettepeLogo();
 
     printk("\r\n%u ms: ** Initialization complete! **\r\n\r\n", get_system_timer_ms());
     printk("Current Exception Level: %u\r\n", (uint64_t)get_current_el());

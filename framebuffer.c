@@ -1,10 +1,18 @@
 #include "mbox.h"
 #include "serd-os_logo.h"
+#include "hacettepe_logo.h"
 #include "terminal.h"
 #include "uart.h"
 
 unsigned int width, height, pitch, isrgb; /* dimensions and channel order */
 unsigned char *fb;                        /* raw frame buffer address */
+
+#define HEADER_PIXEL(data,pixel) {\
+pixel[0] = (((data[0] - 33) << 2) | ((data[1] - 33) >> 4)); \
+pixel[1] = ((((data[1] - 33) & 0xF) << 4) | ((data[2] - 33) >> 2)); \
+pixel[2] = ((((data[2] - 33) & 0x3) << 6) | ((data[3] - 33))); \
+data += 4; \
+}
 
 /**
  * Set screen resolution to 800x480
@@ -89,9 +97,9 @@ void fb_showImage(const char *data, const uint32_t img_height, const uint32_t im
     }
 }
 
-void fb_showlLoadingScreen() { fb_showImage(header_data, serdos_height, serdos_width); }
+void fb_showlLoadingScreen() { fb_showImage(serdos_header_data, serdos_height, serdos_width); }
 
-void fb_showHacettepeLogo() { fb_showImage(header_data, serdos_height, serdos_width); }
+void fb_showHacettepeLogo() { fb_showImage(hacettepe_header_data, hacettepe_height, hacettepe_width); }
 
 void fb_cleanScreen()
 {
