@@ -71,26 +71,33 @@ void init_fb()
         uart_writeArray("Unable to set screen resolution to 1024x768x32\n");
     }
 }
-
-void fb_showlLoadingScreen()
+void fb_showImage(const char *data,const uint32_t img_height,const uint32_t img_width)
 {
-    int x, y;
     unsigned char *ptr = fb;
-    char *data = header_data, pixel[4];
+    char pixel[4] = {0};
 
-    ptr += (height - serdos_height) / 2 * pitch + (width - serdos_width) * 2;
-    for (y = 0; y < serdos_height; y++)
+    ptr += (height - img_height) / 2 * pitch + (width - img_width) * 2;
+    for (uint32_t y = 0; y < img_height; y++)
     {
-        for (x = 0; x < serdos_width; x++)
+        for (uint32_t x = 0; x < img_width; x++)
         {
             HEADER_PIXEL(data, pixel);
-            // the image is in RGB. So if we have an RGB framebuffer, we can copy the pixels
-            // directly, but for BGR we must swap R (pixel[0]) and B (pixel[2]) channels.
             *((unsigned int *)ptr) = isrgb ? *((unsigned int *)&pixel) : (unsigned int)(pixel[0] << 16 | pixel[1] << 8 | pixel[2]);
             ptr += 4;
         }
-        ptr += pitch - serdos_width * 4;
+        ptr += pitch - img_width * 4;
     }
+}
+
+
+void fb_showlLoadingScreen()
+{
+    fb_showImage(header_data, serdos_height, serdos_width);
+}
+
+void fb_showHacettepeLogo()
+{
+    fb_showImage(header_data, serdos_height, serdos_width);
 }
 
 void fb_cleanScreen()
