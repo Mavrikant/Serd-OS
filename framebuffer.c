@@ -1,9 +1,9 @@
+#include "delay.h"
 #include "hacettepe_logo.h"
 #include "mbox.h"
+#include "print.h"
 #include "serd-os_logo.h"
 #include "terminal.h"
-#include "print.h"
-#include "delay.h"
 
 unsigned int width, height, pitch, isrgb; /* dimensions and channel order */
 unsigned char *fb;                        /* raw frame buffer address */
@@ -79,7 +79,7 @@ void init_fb()
     }
     else
     {
-        printk("%u ms: Unable to set screen resolution to %dx%dx32\r\n", (uint64_t)get_system_timer() / 1000,width,height);
+        printk("%u ms: Unable to set screen resolution to %dx%dx32\r\n", (uint64_t)get_system_timer() / 1000, width, height);
     }
 }
 void fb_showImage(const char *data, const uint32_t img_height, const uint32_t img_width)
