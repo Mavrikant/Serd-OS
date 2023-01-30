@@ -3,6 +3,7 @@
 #include "print.h"
 #include "registers.h"
 #include "uart.h"
+#include "delay.h"
 
 void enable_timer(void);
 uint32_t read_timer_status(void);
@@ -16,8 +17,8 @@ void init_timer(void)
 {
     timer_interval = read_timer_freq() / 100;
     enable_timer();
-    out_word(CNTP_EL0, (1 << 1));
-    printk("%u ms: Timer is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
+    set_register((uint64_t)CNTP_EL0, (1 << 1));
+    printk("%u ms: Timer is initialized!\r\n", get_system_timer_ms());
     // printk("timer_interval: %u \r\n", timer_interval);
 }
 
@@ -144,7 +145,7 @@ void exc_handler(unsigned long type, unsigned long esr, unsigned long elr, unsig
     uart_writeHex(far);
     uart_writeArray("\n");
 
-    uint32_t irq = in_word(CNTP_STATUS_EL0);
+    uint32_t irq = get_register((uint64_t)CNTP_STATUS_EL0);
     if (irq & (1 << 1))
     {
         timer_interrupt_handler();

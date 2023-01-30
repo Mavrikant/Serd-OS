@@ -1,27 +1,15 @@
-.global delay
-.global out_word
-.global in_word
+.global set_register
+.global get_register
 .global memset
 .global memcpy
 .global memmove
 .global memcmp
-.global get_el
 
-get_el:
-    mrs x0, CurrentEL 
-    lsr x0, x0, #2
-    ret
-
-delay:
-    subs x0, x0, #1
-    bne delay
-    ret
-
-out_word:
+set_register:
     str w1, [x0]
     ret
 
-in_word:
+get_register:
     ldr w0, [x0]
     ret
 

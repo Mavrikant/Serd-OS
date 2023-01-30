@@ -4,6 +4,7 @@
 #include "datatypes.h"
 
 uint64_t get_system_timer();
+uint64_t get_system_timer_ms();
 void wait_cycles(uint32_t n);
 void wait_msec_st(uint32_t n);
 void wait_msec(uint32_t n);

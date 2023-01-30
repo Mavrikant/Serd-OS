@@ -26,7 +26,7 @@ clean:
 	/bin/rm kernel8.elf *.o *.img *.map *.dump> /dev/null 2> /dev/null || true
 
 qemu:
-	qemu-system-aarch64 -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio
+	qemu-system-aarch64 -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio -display gtk
 
 debug:
-	qemu-system-aarch64 -S -s -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio
+	qemu-system-aarch64 -S -s -M raspi3b -cpu cortex-a53 -m 1024 -kernel kernel8.img -serial stdio -display gtk

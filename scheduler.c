@@ -31,22 +31,23 @@ void start_schedular(const ScheduleType *schedule)
         for (uint32_t i = 0; i < schedule->mainTaskCount; i++)
         {
             uint64_t startTime = get_system_timer_ms();
-
-            for (uint32_t j = 0; j < schedule->taskList[i].subTaskCount; j++)
+            MainTaskType mainTask = schedule->taskList[i];
+            for (uint32_t j = 0; j < mainTask.subTaskCount; j++)
             {
-                if (schedule->taskList[i].subTaskList[j].isExecute == TRUE)
+                SubTaskType subTask =  mainTask.subTaskList[j];
+                if(subTask.isExecute == TRUE)
                 {
-                    schedule->taskList[i].subTaskList[j].task();
+                    subTask.task();    
                 }
             }
 
             printk("%d ms: Main Task took %d ms.\r\n\r\n", get_system_timer_ms(), (get_system_timer_ms() - startTime));
-            if ((startTime + schedule->taskList[i].mainTaskDuration_Ms) < get_system_timer_ms())
+            if ((startTime + mainTask.mainTaskDuration_Ms) < get_system_timer_ms())
             {
                 printk("%d ms: Deadline miss reboot\r\n", get_system_timer_ms());
                 reboot();
             }
-            while ((startTime + schedule->taskList[i].mainTaskDuration_Ms) > get_system_timer_ms())
+            while ((startTime + mainTask.mainTaskDuration_Ms) > get_system_timer_ms())
             {
                 asm volatile("nop"); // Wait
             }
