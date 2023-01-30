@@ -5,7 +5,8 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/mavrikant/serd-os/badge)](https://www.codefactor.io/repository/github/mavrikant/serd-os)
 
 <p align="center">'just a hobby, won't be big and professional like gnu'</p>
-<p align="center"><img src="img/init.png"/></p>
+<p align="center"><a href="https://www.youtube.com/watch?v=IzhOFpoBha8" alt="Youtube"><img src="img/init.png"/></a></p>
+
 
 ## Development environment
 
