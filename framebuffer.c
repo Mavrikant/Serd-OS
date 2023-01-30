@@ -1,10 +1,10 @@
-#include "serd-os_logo.h"
 #include "mbox.h"
-#include "uart.h"
+#include "serd-os_logo.h"
 #include "terminal.h"
+#include "uart.h"
 
 unsigned int width, height, pitch, isrgb; /* dimensions and channel order */
-unsigned char *fb;                       /* raw frame buffer address */
+unsigned char *fb;                        /* raw frame buffer address */
 
 /**
  * Set screen resolution to 800x480
@@ -97,7 +97,7 @@ void fb_cleanScreen()
 {
     int x, y;
     unsigned char *ptr = fb;
-    
+
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < width; x++)
@@ -111,44 +111,52 @@ void fb_cleanScreen()
 void draw_pixel(int x, int y, unsigned char attr)
 {
     int offs = (y * pitch) + (x * 4);
-    *((unsigned int*)(fb + offs)) = vgapal[attr & 0x0f];
+    *((unsigned int *)(fb + offs)) = vgapal[attr & 0x0f];
 }
 
 void draw_pect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
 {
-    int y=y1;
+    int y = y1;
 
-    while (y <= y2) {
-       int x=x1;
-       while (x <= x2) {
-	  if ((x == x1 || x == x2) || (y == y1 || y == y2)) draw_pixel(x, y, attr);
-	  else if (fill) draw_pixel(x, y, (attr & 0xf0) >> 4);
-          x++;
-       }
-       y++;
+    while (y <= y2)
+    {
+        int x = x1;
+        while (x <= x2)
+        {
+            if ((x == x1 || x == x2) || (y == y1 || y == y2))
+                draw_pixel(x, y, attr);
+            else if (fill)
+                draw_pixel(x, y, (attr & 0xf0) >> 4);
+            x++;
+        }
+        y++;
     }
 }
 
-void draw_line(int x1, int y1, int x2, int y2, unsigned char attr)  
-{  
+void draw_line(int x1, int y1, int x2, int y2, unsigned char attr)
+{
     int dx, dy, p, x, y;
 
-    dx = x2-x1;
-    dy = y2-y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
     x = x1;
     y = y1;
-    p = 2*dy-dx;
+    p = 2 * dy - dx;
 
-    while (x<x2) {
-       if (p >= 0) {
-          draw_pixel(x,y,attr);
-          y++;
-          p = p+2*dy-2*dx;
-       } else {
-          draw_pixel(x,y,attr);
-          p = p+2*dy;
-       }
-       x++;
+    while (x < x2)
+    {
+        if (p >= 0)
+        {
+            draw_pixel(x, y, attr);
+            y++;
+            p = p + 2 * dy - 2 * dx;
+        }
+        else
+        {
+            draw_pixel(x, y, attr);
+            p = p + 2 * dy;
+        }
+        x++;
     }
 }
 
@@ -157,32 +165,36 @@ void draw_circle(int x0, int y0, int radius, unsigned char attr, int fill)
     int x = radius;
     int y = 0;
     int err = 0;
- 
-    while (x >= y) {
-	if (fill) {
-	   draw_line(x0 - y, y0 + x, x0 + y, y0 + x, (attr & 0xf0) >> 4);
-	   draw_line(x0 - x, y0 + y, x0 + x, y0 + y, (attr & 0xf0) >> 4);
-	   draw_line(x0 - x, y0 - y, x0 + x, y0 - y, (attr & 0xf0) >> 4);
-	   draw_line(x0 - y, y0 - x, x0 + y, y0 - x, (attr & 0xf0) >> 4);
-	}
-	draw_pixel(x0 - y, y0 + x, attr);
-	draw_pixel(x0 + y, y0 + x, attr);
-	draw_pixel(x0 - x, y0 + y, attr);
-        draw_pixel(x0 + x, y0 + y, attr);
-	draw_pixel(x0 - x, y0 - y, attr);
-	draw_pixel(x0 + x, y0 - y, attr);
-	draw_pixel(x0 - y, y0 - x, attr);
-	draw_pixel(x0 + y, y0 - x, attr);
 
-	if (err <= 0) {
-	    y += 1;
-	    err += 2*y + 1;
-	}
- 
-	if (err > 0) {
-	    x -= 1;
-	    err -= 2*x + 1;
-	}
+    while (x >= y)
+    {
+        if (fill)
+        {
+            draw_line(x0 - y, y0 + x, x0 + y, y0 + x, (attr & 0xf0) >> 4);
+            draw_line(x0 - x, y0 + y, x0 + x, y0 + y, (attr & 0xf0) >> 4);
+            draw_line(x0 - x, y0 - y, x0 + x, y0 - y, (attr & 0xf0) >> 4);
+            draw_line(x0 - y, y0 - x, x0 + y, y0 - x, (attr & 0xf0) >> 4);
+        }
+        draw_pixel(x0 - y, y0 + x, attr);
+        draw_pixel(x0 + y, y0 + x, attr);
+        draw_pixel(x0 - x, y0 + y, attr);
+        draw_pixel(x0 + x, y0 + y, attr);
+        draw_pixel(x0 - x, y0 - y, attr);
+        draw_pixel(x0 + x, y0 - y, attr);
+        draw_pixel(x0 - y, y0 - x, attr);
+        draw_pixel(x0 + y, y0 - x, attr);
+
+        if (err <= 0)
+        {
+            y += 1;
+            err += 2 * y + 1;
+        }
+
+        if (err > 0)
+        {
+            x -= 1;
+            err -= 2 * x + 1;
+        }
     }
 }
 
@@ -190,28 +202,37 @@ void draw_char(unsigned char ch, int x, int y, unsigned char attr)
 {
     unsigned char *glyph = (unsigned char *)&font + (ch < FONT_NUMGLYPHS ? ch : 0) * FONT_BPG;
 
-    for (int i=0;i<FONT_HEIGHT;i++) {
-	for (int j=0;j<FONT_WIDTH;j++) {
-	    unsigned char mask = 1 << j;
-	    unsigned char col = (*glyph & mask) ? attr & 0x0f : (attr & 0xf0) >> 4;
+    for (int i = 0; i < FONT_HEIGHT; i++)
+    {
+        for (int j = 0; j < FONT_WIDTH; j++)
+        {
+            unsigned char mask = 1 << j;
+            unsigned char col = (*glyph & mask) ? attr & 0x0f : (attr & 0xf0) >> 4;
 
-	    draw_pixel(x+j, y+i, col);
-	}
-	glyph += FONT_BPL;
+            draw_pixel(x + j, y + i, col);
+        }
+        glyph += FONT_BPL;
     }
 }
 
 void draw_string(int x, int y, char *s, unsigned char attr)
 {
-    while (*s) {
-       if (*s == '\r') {
-          x = 0;
-       } else if(*s == '\n') {
-          x = 0; y += FONT_HEIGHT;
-       } else {
-	  draw_char(*s, x, y, attr);
-          x += FONT_WIDTH;
-       }
-       s++;
+    while (*s)
+    {
+        if (*s == '\r')
+        {
+            x = 0;
+        }
+        else if (*s == '\n')
+        {
+            x = 0;
+            y += FONT_HEIGHT;
+        }
+        else
+        {
+            draw_char(*s, x, y, attr);
+            x += FONT_WIDTH;
+        }
+        s++;
     }
 }

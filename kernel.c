@@ -1,7 +1,7 @@
 #include "debug.h"
 #include "delay.h"
-#include "handler.h"
 #include "framebuffer.h"
+#include "handler.h"
 #include "lib.h"
 #include "powercontrol.h"
 #include "print.h"
@@ -13,7 +13,7 @@ void task1_1(void)
 {
     uint64_t task_start = get_system_timer_ms();
     printk("%d ms: Task1_1 running...\r\n", task_start);
-    draw_circle(rand(0,800), rand(0,480), rand(0,100), rand(0,16), rand(0,1));
+    draw_circle(rand(0, 800), rand(0, 480), rand(0, 100), rand(0, 16), rand(0, 1));
     wait_msec(rand(0, 55));
 }
 void task1_2(void)
@@ -33,7 +33,7 @@ void task2_1(void)
 {
     uint64_t task_start = get_system_timer_ms();
     printk("%d ms: Task2_1 running...\r\n", task_start);
-    draw_circle(rand(0,800), rand(0,480), rand(100,200), rand(0,16), rand(0,1));
+    draw_circle(rand(0, 800), rand(0, 480), rand(100, 200), rand(0, 16), rand(0, 1));
     wait_msec(rand(0, 55));
 }
 
@@ -65,14 +65,12 @@ void Serd_OS_main()
     printk("\r\n%u ms: ** Initialization complete! **\r\n\r\n", get_system_timer_ms());
     printk("Current Exception Level: %u\r\n", (uint64_t)get_current_el());
 
-
-
-    //draw_rect(150,150,400,400,0x03,0);
-    //draw_circle(960,540,50,0x13,1);
-    //draw_pixel(250,250,0x0e);
-    //draw_char('O',500,500,0x05);
-    //draw_line(100,500,350,700,0x0c);
-    draw_string(50,50,"Serd-OS Initialized!",0x0f);
+    // draw_rect(150,150,400,400,0x03,0);
+    // draw_circle(960,540,50,0x13,1);
+    // draw_pixel(250,250,0x0e);
+    // draw_char('O',500,500,0x05);
+    // draw_line(100,500,350,700,0x0c);
+    draw_string(50, 50, "Serd-OS Initialized!", 0x0f);
 
     ScheduleType schedule = {0};
     schedule.mainTaskCount = 3;
