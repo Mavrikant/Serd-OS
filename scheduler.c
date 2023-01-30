@@ -34,10 +34,10 @@ void start_schedular(const ScheduleType *schedule)
             MainTaskType mainTask = schedule->taskList[i];
             for (uint32_t j = 0; j < mainTask.subTaskCount; j++)
             {
-                SubTaskType subTask =  mainTask.subTaskList[j];
-                if(subTask.isExecute == TRUE)
+                SubTaskType subTask = mainTask.subTaskList[j];
+                if (subTask.isExecute == TRUE)
                 {
-                    subTask.task();    
+                    subTask.task();
                 }
             }
 

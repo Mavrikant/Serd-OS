@@ -17,13 +17,13 @@ void init_lfb()
     mbox[3] = 8;
     mbox[4] = 8;
     mbox[5] = 800; // FrameBufferInfo.width
-    mbox[6] = 480;  // FrameBufferInfo.height
+    mbox[6] = 480; // FrameBufferInfo.height
 
     mbox[7] = 0x48004; // set virt wh
     mbox[8] = 8;
     mbox[9] = 8;
     mbox[10] = 800; // FrameBufferInfo.virtual_width
-    mbox[11] = 480;  // FrameBufferInfo.virtual_height
+    mbox[11] = 480; // FrameBufferInfo.virtual_height
 
     mbox[12] = 0x48009; // set virt offset
     mbox[13] = 8;

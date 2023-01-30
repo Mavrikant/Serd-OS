@@ -1,9 +1,9 @@
 #include "datatypes.h"
+#include "delay.h"
 #include "lib.h"
 #include "print.h"
 #include "registers.h"
 #include "uart.h"
-#include "delay.h"
 
 void enable_timer(void);
 uint32_t read_timer_status(void);

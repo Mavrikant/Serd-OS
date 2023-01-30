@@ -1,12 +1,12 @@
 #include "debug.h"
 #include "delay.h"
 #include "handler.h"
+#include "lfb.h"
 #include "lib.h"
 #include "powercontrol.h"
 #include "print.h"
 #include "rand.h"
 #include "uart.h"
-#include "lfb.h"
 
 void task1_1(void)
 {
@@ -63,7 +63,7 @@ void Serd_OS_main()
 
     ScheduleType schedule = {0};
     schedule.mainTaskCount = 3;
- 
+
     schedule.taskList[0].mainTaskDuration_Ms = 1500;
     schedule.taskList[0].subTaskCount = 3;
     schedule.taskList[0].subTaskList[0].isExecute = TRUE;
@@ -72,13 +72,12 @@ void Serd_OS_main()
     schedule.taskList[0].subTaskList[1].task = &task1_2;
     schedule.taskList[0].subTaskList[2].isExecute = TRUE;
     schedule.taskList[0].subTaskList[2].task = &task1_3;
-   
- 
+
     schedule.taskList[1].mainTaskDuration_Ms = 500;
     schedule.taskList[1].subTaskCount = 1;
     schedule.taskList[1].subTaskList[0].isExecute = TRUE;
     schedule.taskList[1].subTaskList[0].task = &task2_1;
-    
+
     schedule.taskList[2].mainTaskDuration_Ms = 1000;
     schedule.taskList[2].subTaskCount = 2;
     schedule.taskList[2].subTaskList[0].isExecute = TRUE;
