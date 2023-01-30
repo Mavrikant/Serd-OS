@@ -22,6 +22,22 @@
     - [Arm Assembly Extension](https://marketplace.visualstudio.com/items?itemName=dan-c-underwood.arm)
     - [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack)
 
+## TODO
+- Create a docker iamge for development enverioment
+- Better start screen withj animation
+- Sound support
+- Preemptive scheduler
+- Permanant storage 
+- Ethernet support
+- Bluetooth
+- MultiCore Scheduler 
+- I2C driver
+- PWM driver
+- SPI driver
+- GDB debug enveriment
+- 
+
+
 ## Developers
 
   - M. Serdar Karaman (<a href="https://github.com/Mavrikant" alt="Github"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Github" width="15" height="15"></a>, <a href="https://www.linkedin.com/in/mserdarkaraman/" alt="linkedin"><img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/linkedin-3-16.png" alt="linkedin" width="15" height="15"></a>, https://karaman.dev/)
