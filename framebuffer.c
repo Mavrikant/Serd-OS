@@ -2,7 +2,8 @@
 #include "mbox.h"
 #include "serd-os_logo.h"
 #include "terminal.h"
-#include "uart.h"
+#include "print.h"
+#include "delay.h"
 
 unsigned int width, height, pitch, isrgb; /* dimensions and channel order */
 unsigned char *fb;                        /* raw frame buffer address */
@@ -74,10 +75,11 @@ void init_fb()
         pitch = mbox[33];       // get number of bytes per line
         isrgb = mbox[24];       // get the actual channel order
         fb = (void *)((unsigned long)mbox[28]);
+        printk("%u ms: FrameBuffer is initialized!\r\n", (uint64_t)get_system_timer() / 1000);
     }
     else
     {
-        uart_writeArray("Unable to set screen resolution to 1024x768x32\n");
+        printk("%u ms: Unable to set screen resolution to %dx%dx32\r\n", (uint64_t)get_system_timer() / 1000,width,height);
     }
 }
 void fb_showImage(const char *data, const uint32_t img_height, const uint32_t img_width)
