@@ -71,7 +71,7 @@ void init_fb()
         uart_writeArray("Unable to set screen resolution to 1024x768x32\n");
     }
 }
-void fb_showImage(const char *data,const uint32_t img_height,const uint32_t img_width)
+void fb_showImage(const char *data, const uint32_t img_height, const uint32_t img_width)
 {
     unsigned char *ptr = fb;
     char pixel[4] = {0};
@@ -89,16 +89,9 @@ void fb_showImage(const char *data,const uint32_t img_height,const uint32_t img_
     }
 }
 
+void fb_showlLoadingScreen() { fb_showImage(header_data, serdos_height, serdos_width); }
 
-void fb_showlLoadingScreen()
-{
-    fb_showImage(header_data, serdos_height, serdos_width);
-}
-
-void fb_showHacettepeLogo()
-{
-    fb_showImage(header_data, serdos_height, serdos_width);
-}
+void fb_showHacettepeLogo() { fb_showImage(header_data, serdos_height, serdos_width); }
 
 void fb_cleanScreen()
 {
