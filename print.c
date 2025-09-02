@@ -92,18 +92,18 @@ uint32_t printk(const char *format, ...)
             switch (format[++i])
             {
             case 'x':
-                {
-                    uint64_t uinteger = va_arg(args, uint64_t);
-                    buffer_size += hex_to_string(buffer, buffer_size, uinteger);
-                }
-                break;
+            {
+                uint64_t uinteger = va_arg(args, uint64_t);
+                buffer_size += hex_to_string(buffer, buffer_size, uinteger);
+            }
+            break;
 
             case 'u':
-                {
-                    uint64_t uinteger = va_arg(args, uint64_t);
-                    buffer_size += udecimal_to_string(buffer, buffer_size, uinteger);
-                }
-                break;
+            {
+                uint64_t uinteger = va_arg(args, uint64_t);
+                buffer_size += udecimal_to_string(buffer, buffer_size, uinteger);
+            }
+            break;
 
             case 'd':
                 integer = va_arg(args, int64_t);

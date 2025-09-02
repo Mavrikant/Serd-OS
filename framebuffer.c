@@ -121,8 +121,10 @@ void fb_cleanScreen()
 
 void draw_pixel(int x, int y, unsigned char attr)
 {
-    if (x < 0 || y < 0) return;
-    if ((unsigned int)x >= width || (unsigned int)y >= height) return;
+    if (x < 0 || y < 0)
+        return;
+    if ((unsigned int)x >= width || (unsigned int)y >= height)
+        return;
     int offs = (y * pitch) + (x * 4);
     *((unsigned int *)(fb + offs)) = vgapal[attr & 0x0f];
 }
