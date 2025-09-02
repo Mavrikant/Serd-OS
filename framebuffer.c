@@ -121,11 +121,13 @@ void fb_cleanScreen()
 
 void draw_pixel(int x, int y, unsigned char attr)
 {
+    if (x < 0 || y < 0) return;
+    if ((unsigned int)x >= width || (unsigned int)y >= height) return;
     int offs = (y * pitch) + (x * 4);
     *((unsigned int *)(fb + offs)) = vgapal[attr & 0x0f];
 }
 
-void draw_pect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
+void draw_rect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
 {
     int y = y1;
 
